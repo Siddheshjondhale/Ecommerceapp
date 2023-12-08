@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.ecommerceapp'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.ecommerceapp"
-        minSdk 24
-        targetSdk 33
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -29,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -59,7 +62,7 @@ dependencies {
     // image loading
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    //circular Imagfe View
+    //circular Image View
     implementation 'com.mikhaellopez:circularimageview:4.3.1'
 
 
