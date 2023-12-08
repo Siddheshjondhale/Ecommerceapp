@@ -30,20 +30,6 @@ class ProductScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        val imageList = mutableListOf<ImageList>()
-
-        imageList.add(ImageList(R.drawable.ic_launcher_background))
-        imageList.add(ImageList(com.google.android.material.R.drawable.ic_clear_black_24))
-        imageList.add(ImageList(com.google.android.material.R.drawable.ic_keyboard_black_24dp))
-        imageList.add(ImageList(R.drawable.ic_launcher_background))
-
-//        binding.carouselViewPager.adapter = HomeScreenCarouselViewPagerAdapter(imageList,binding.carouselViewPager)
-
-        binding.carouselViewPager.adapter=ImageViewCarouselAdapter(imageList,binding.carouselViewPager)
-
-        return inflater.inflate(R.layout.fragment_product_screen, container, false)
-
         _binding = FragmentProductScreenBinding.inflate(inflater,container,false)
         return binding.root
 
@@ -52,6 +38,18 @@ class ProductScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val imageList = mutableListOf<ImageList>()
+
+        imageList.add(ImageList(R.drawable.ic_launcher_background))
+        imageList.add(ImageList(R.drawable.ic_launcher_background))
+        imageList.add(ImageList(R.drawable.ic_launcher_foreground))
+        imageList.add(ImageList(R.drawable.ic_launcher_background))
+
+//        binding.carouselViewPager.adapter = HomeScreenCarouselViewPagerAdapter(imageList,binding.carouselViewPager)
+
+        binding.carouselViewPager.adapter=ImageViewCarouselAdapter(imageList,binding.carouselViewPager)
     }
 
     override fun onDestroyView() {
