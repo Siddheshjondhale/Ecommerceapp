@@ -44,6 +44,9 @@ dependencies {
     // ui dependency
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 
     // testing
     testImplementation 'junit:junit:4.13.2'
@@ -65,6 +68,10 @@ dependencies {
     //circular Image View
     implementation 'com.mikhaellopez:circularimageview:4.3.1'
 
+
+
+    //view pager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 
 }
