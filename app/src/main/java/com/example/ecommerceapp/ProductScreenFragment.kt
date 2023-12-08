@@ -10,6 +10,7 @@ import com.example.ecommerceapp.ViewPageAdapter.ImageList
 import com.example.ecommerceapp.ViewPageAdapter.ImageViewCarouselAdapter
 
 import com.example.ecommerceapp.databinding.FragmentProductScreenBinding
+import me.relex.circleindicator.CircleIndicator3
 
 class ProductScreenFragment : Fragment() {
 
@@ -51,6 +52,10 @@ class ProductScreenFragment : Fragment() {
         binding.carouselViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         binding.indicator.setViewPager(binding.carouselViewPager)
+
+        // Optional: Customize indicator behavior
+        binding.indicator.setOrientation(CircleIndicator3.HORIZONTAL)
+        binding.indicator.createIndicators(imageList.size, 0)
 
 
 
