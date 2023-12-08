@@ -1,11 +1,10 @@
 package com.example.ecommerceapp
-
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
 
 import com.example.ecommerceapp.ViewPageAdapter.ImageList
 import com.example.ecommerceapp.ViewPageAdapter.ImageViewCarouselAdapter
@@ -49,7 +48,14 @@ class ProductScreenFragment : Fragment() {
 
 
         binding.carouselViewPager.adapter=ImageViewCarouselAdapter(imageList,binding.carouselViewPager)
+        binding.carouselViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        binding.indicator.setViewPager(binding.carouselViewPager)
+
+
+
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -57,3 +63,4 @@ class ProductScreenFragment : Fragment() {
     }
 
 }
+
