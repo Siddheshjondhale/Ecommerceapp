@@ -42,7 +42,6 @@ class ProductScreenFragment : Fragment() {
 
         binding.carouselViewPager.adapter=ImageViewCarouselAdapter(imageList,binding.carouselViewPager)
 
-        return inflater.inflate(R.layout.fragment_product_screen, container, false)
 
         _binding = FragmentProductScreenBinding.inflate(inflater,container,false)
         return binding.root
