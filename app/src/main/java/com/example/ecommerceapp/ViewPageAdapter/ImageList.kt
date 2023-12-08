@@ -1,3 +1,3 @@
 package com.example.ecommerceapp.ViewPageAdapter
 
-data class ImageList()
+data class ImageList(val imageResourceId: Int)

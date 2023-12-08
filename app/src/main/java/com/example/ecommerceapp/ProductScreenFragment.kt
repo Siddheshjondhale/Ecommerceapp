@@ -14,6 +14,8 @@ class ProductScreenFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProductScreenViewModel
+    private var _binding: ProductScreenFragment? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
