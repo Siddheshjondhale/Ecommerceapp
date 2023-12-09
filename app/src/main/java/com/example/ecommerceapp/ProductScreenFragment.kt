@@ -4,7 +4,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.ecommerceapp.Adapters.CircleAvatarAdapter
+import com.example.ecommerceapp.Adapters.imageAvatarList
 
 import com.example.ecommerceapp.ViewPageAdapter.ImageList
 import com.example.ecommerceapp.ViewPageAdapter.ImageViewCarouselAdapter
@@ -40,8 +43,9 @@ class ProductScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageList = mutableListOf<ImageList>()
+        val imageavatarList = mutableListOf<imageAvatarList>()
 
-        imageList.add(ImageList(R.drawable.ic_launcher_background))
+        imageList.add(ImageList(R.drawable.word))
         imageList.add(ImageList(R.drawable.ic_launcher_background))
         imageList.add(ImageList(R.drawable.ic_launcher_foreground))
         imageList.add(ImageList(R.drawable.ic_launcher_background))
@@ -56,6 +60,22 @@ class ProductScreenFragment : Fragment() {
         // Optional: Customize indicator behavior
         binding.indicator.setOrientation(CircleIndicator3.HORIZONTAL)
         binding.indicator.createIndicators(imageList.size, 0)
+
+
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
+
+        // circleAvatar
+
+        binding.circleAvatarRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.circleAvatarRecyclerview.adapter = CircleAvatarAdapter(imageavatarList, requireContext())
 
 
 
