@@ -51,20 +51,7 @@ class ProductScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageavatarList = mutableListOf<imageAvatarList>()
-
-        // Add image URLs to imageavatarList
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-        imageavatarList.add(imageAvatarList("https://klinq.com//media//catalog//product//8//8//8809579837961-1_1pmzzkspggjyzljy.jpg"))
-
-        // Add more image URLs if needed
-
-        binding.circleAvatarRecyclerview.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.circleAvatarRecyclerview.adapter = CircleAvatarAdapter(imageavatarList, requireContext())
+     
 
         val DataResponse = RetrofitHelper.getInstance().create(EcommerceApi::class.java)
 
@@ -99,7 +86,9 @@ class ProductScreenFragment : Fragment() {
                     .mapNotNull { it.images.firstOrNull() as? String }
                     .map { ImageList(it) }
                 )
-
+             imageavatarList.addAll(data.data.configurable_option.flatMap { it.attributes }.map { it.images.firstOrNull() as? String }.map { imageAvatarList(
+                 it.toString()
+             ) })
 
 
                 withContext(Dispatchers.Main) {
@@ -115,6 +104,14 @@ class ProductScreenFragment : Fragment() {
                     binding.indicator.setViewPager(binding.carouselViewPager)
 //                    binding.indicator.setOrientation(CircleIndicator3.HORIZONTAL)
 //                    binding.indicator.createIndicators(imageList.size, 0)
+
+
+
+//                    avatar recyler view
+                    binding.circleAvatarRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                    binding.circleAvatarRecyclerview.adapter = CircleAvatarAdapter(imageavatarList, requireContext())
+
+
 
                 }
 
