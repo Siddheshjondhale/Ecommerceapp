@@ -51,7 +51,7 @@ class ProductScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageavatarList = mutableListOf<imageAvatarList>()
-     
+
 
         val DataResponse = RetrofitHelper.getInstance().create(EcommerceApi::class.java)
 
