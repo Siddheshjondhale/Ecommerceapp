@@ -1,12 +1,14 @@
 package com.example.ecommerceapp
 import android.os.Bundle
 import android.telephony.TelephonyCallback.DataActivationStateListener
+import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ecommerceapp.Adapters.CircleAvatarAdapter
@@ -27,6 +29,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.relex.circleindicator.CircleIndicator3
+import java.text.DecimalFormat
 
 class ProductScreenFragment : Fragment() {
 
@@ -90,16 +93,17 @@ class ProductScreenFragment : Fragment() {
         binding.circleAvatarRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.circleAvatarRecyclerview.adapter = CircleAvatarAdapter(imageavatarList, requireContext())
 
-        var brandName: String? = null
-
+//        var brandName: String? = null
+//
+//        var finalprice: String? = null
 
         val DataResponse=RetrofitHelper.getInstance().create(EcommerceApi::class.java)
         GlobalScope.launch {
 
             val result=DataResponse.getData()
-            if(result!=null){
-                Log.d("DataRetro",result.body().toString())
-            }
+//            if(result!=null){
+//                Log.d("DataRetro",result.body().toString())
+//            }
 
             val jsonString = result.body().toString()
 
@@ -107,10 +111,24 @@ class ProductScreenFragment : Fragment() {
                 val data: EcommereList = result.body()!!
 
                 // Access the brand_name attribute
-                brandName = data.data.brand_name
+               val brandName = data.data.brand_name
+                val finalprice=data.data.final_price
+                val sku =data.data.sku
+                val formattedFinalPrice = formatFinalPrice(finalprice!!)
+// Inside your GlobalScope.launch block, where you're setting the description text
+                val descriptionHtml = data.data.description
+                val formattedDescription = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    HtmlCompat.fromHtml(descriptionHtml, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                } else {
+                    Html.fromHtml(descriptionHtml)
+                }
+
                 withContext(Dispatchers.Main) {
                     binding.productNameTV.setText(brandName)
-                    Toast.makeText(requireContext(),brandName.toString(), Toast.LENGTH_SHORT).show()
+                    binding.productPrice.setText(formattedFinalPrice+" KWD")
+                    binding.productSKU.setText("SKU: "+sku)
+                    binding.descriptionProduct.setText(formattedDescription)
+              Log.d("productdescriptio",formattedDescription.toString())
 
                 }
 
@@ -129,6 +147,13 @@ class ProductScreenFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // important, clear bindings onDestroyView
+    }
+    private fun formatFinalPrice(finalPrice: String): String {
+        // Convert finalPrice to Double to remove trailing zeros
+        val formattedValue = finalPrice.toDouble()
+        // Use DecimalFormat to format the value
+        val decimalFormat = DecimalFormat("#.##")
+        return decimalFormat.format(formattedValue)
     }
 
 
