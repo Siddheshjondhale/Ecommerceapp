@@ -3,7 +3,7 @@ package com.example.ecommerceapp
 import android.text.Html
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModel
-// ProductScreenViewModel.kt
+
 
 import androidx.lifecycle.MutableLiveData
 
